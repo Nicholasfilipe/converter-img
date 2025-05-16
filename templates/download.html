@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Imagens Convertidas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 15px;
+      width: 220px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .card p {
+      margin: 10px 0;
+      word-break: break-word;
+    }
+
+    .card a,
+    .btn-zip,
+    .back-button {
+      display: block;
+      margin: 10px auto;
+      text-align: center;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    .btn-zip {
+      background-color: #28a745;
+    }
+
+    .back-button {
+      background-color: #6c757d;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align: center;">Imagens Convertidas</h1>
+
+    <div class="cards">
+      {% for file in files %}
+      <div class="card">
+        <img src="{{ url_for('show_converted_image', filename=file) }}" alt="Imagem convertida">
+        <p>{{ file }}</p>
+        <a href="{{ url_for('download_file', filename=file) }}" download>Baixar</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if files %}
+    <a href="{{ url_for('download_all') }}" class="btn-zip">Baixar Todas (.zip)</a>
+    {% endif %}
+
+    <a href="/" class="back-button">Voltar</a>
+  </div>
+</body>
+</html>

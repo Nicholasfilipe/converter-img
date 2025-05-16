@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor de Imagens</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Conversor de Imagens para JPEG</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="images" id="fileInput" accept="image/*" multiple required>
+      <button type="submit">Converter Imagens</button>
+    </form>
+  </div>
+</body>
+</html>
